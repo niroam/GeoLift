@@ -62,9 +62,9 @@ build_cluster <- function(parallel_setup,
                           import_tidyr_from) {
   message("Setting up cluster.")
   if (parallel_setup == "sequential") {
-    cl <- parallel::makeCluster(parallel::detectCores() - 1, setup_strategy = parallel_setup)
+    cl <- parallel::makeCluster(parallel::detectCores() - 1, setup_strategy = parallel_setup, outfile = "nodelogs.log")
   } else if (parallel_setup == "parallel") {
-    cl <- parallel::makeCluster(parallel::detectCores() - 1, setup_strategy = parallel_setup, setup_timeout = 0.5)
+    cl <- parallel::makeCluster(parallel::detectCores() - 1, setup_strategy = parallel_setup, setup_timeout = 0.5, outfile = "nodelogs.log")
   } else {
     stop('Please specify a valid set-up. Can be one of "sequential" or "parallel".')
   }
